@@ -2,9 +2,10 @@ import { useState } from "react";
 import { Lock, Info } from "lucide-react";
 import { Button } from "@repo/ui";
 import { createOrder, type TApiCreateOrderRequest } from "../../modules/api";
-import type { BuyerData } from "./Step01BuyerDataForm";
-import type { AddressData } from "./Step02AddressForm";
+import type { BuyerData } from "./step01-buyer-data-form";
+import type { AddressData } from "./step02-address-form";
 import PayConductor, {
+    useElement,
     usePayConductor,
 } from "@payconductor-sdk-web/library-react";
 import { env } from "../../modules/env";
@@ -45,6 +46,7 @@ function PaymentFormContent({
 }: PaymentFormProps) {
     const [loading, setLoading] = useState(false);
     const { isReady, error } = usePayConductor();
+    const { } = useElement()
 
     const handleFinalize = async () => {
         setLoading(true);

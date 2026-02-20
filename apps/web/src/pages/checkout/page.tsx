@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { Button, Card } from "@repo/ui";
 
-import { BuyerDataForm, type BuyerData } from "./Step01BuyerDataForm";
-import { AddressForm, type AddressData } from "./Step02AddressForm";
-import { PaymentForm } from "./Step03PaymentForm";
+import { BuyerDataForm, type BuyerData } from "./step01-buyer-data-form";
+import { AddressForm, type AddressData } from "./step02-address-form";
+import { PaymentForm } from "./step03-payment-form";
 
-import { OrderSummary } from "./OrderSummary";
-import { CheckoutHeader } from "./CheckoutHeader";
-import { StepsIndicator } from "./StepsIndicator";
+import { OrderSummary } from "./order-summary";
+import { CheckoutHeader } from "./checkout-header";
+import { StepsIndicator } from "./steps-indicator";
 import { getCart, type TApiCartResponse } from "../../modules/api";
 
 export function CheckoutPage() {
