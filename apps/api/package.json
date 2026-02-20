@@ -1,0 +1,25 @@
+{
+  "name": "api",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "bun src/index.ts"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "*",
+    "@repo/typescript-config": "*",
+    "@types/bun": "latest",
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.3.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@types/cors": "^2.8.19",
+    "axios": "^1.13.5",
+    "cors": "^2.8.6",
+    "express": "^5.2.1"
+  }
+}
