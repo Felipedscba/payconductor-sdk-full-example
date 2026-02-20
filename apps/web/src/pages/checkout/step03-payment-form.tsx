@@ -4,9 +4,11 @@ import { Button } from "@repo/ui";
 import { createOrder, type TApiCreateOrderRequest } from "../../modules/api";
 import type { BuyerData } from "./step01-buyer-data-form";
 import type { AddressData } from "./step02-address-form";
-import PayConductor, {
-    useElement,
+import {
+    PayConductor,
+    PayConductorCheckoutElement,
     usePayConductor,
+    usePayconductorElement,
 } from "@payconductor-sdk-web/library-react";
 import { env } from "../../modules/env";
 
@@ -20,6 +22,7 @@ export function PaymentForm(props: PaymentFormProps) {
     function handleEvent(name: string, content?: any) {
         alert(`Evento: ${name}\nConteúdo: ${JSON.stringify(content)}`);
     }
+    
     return (
         <PayConductor
             publicKey={env.PAYCONDUCTOR_PUBLIC_KEY}
@@ -35,10 +38,6 @@ export function PaymentForm(props: PaymentFormProps) {
     );
 }
 
-function PayConductorCheckoutElement() {
-    return <div></div>
-}
-
 function PaymentFormContent({
     buyerData,
     addressData,
@@ -46,7 +45,7 @@ function PaymentFormContent({
 }: PaymentFormProps) {
     const [loading, setLoading] = useState(false);
     const { isReady, error } = usePayConductor();
-    const { } = useElement()
+    const { confirmPayment } = usePayconductorElement();
 
     const handleFinalize = async () => {
         setLoading(true);
@@ -62,6 +61,11 @@ function PaymentFormContent({
             const response = await createOrder(orderRequest);
             console.log("Pedido criado:", response);
             alert(`Pedido criado com sucesso! ID: ${response.externalId}`);
+            const result = await confirmPayment({
+                orderId: response.externalId,
+            });
+            console.log("Resultado do pagamento:", result);
+            alert(`Resultado do pagamento: ${JSON.stringify(result)}`);
         } catch (error: any) {
             let message = "Unknown error";
             if (error?.response) {

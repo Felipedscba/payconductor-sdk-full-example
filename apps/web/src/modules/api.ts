@@ -8,6 +8,7 @@ export type TApiCartResponse = {
     products: Array<{
         id: string;
         name: string;
+        photo: string;
         description: string;
         price: number;
         qty: number;

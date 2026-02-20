@@ -20,7 +20,10 @@ export function OrderSummary() {
 
     if (loading) {
         return (
-            <Card variant="bordered" className="p-6 space-y-6 lg:sticky lg:top-8">
+            <Card
+                variant="bordered"
+                className="p-6 space-y-6 lg:sticky lg:top-8"
+            >
                 <div>Carregando...</div>
             </Card>
         );
@@ -28,7 +31,10 @@ export function OrderSummary() {
 
     if (!cartData) {
         return (
-            <Card variant="bordered" className="p-6 space-y-6 lg:sticky lg:top-8">
+            <Card
+                variant="bordered"
+                className="p-6 space-y-6 lg:sticky lg:top-8"
+            >
                 <div>Erro ao carregar carrinho</div>
             </Card>
         );
@@ -58,22 +64,30 @@ export function OrderSummary() {
             </div>
 
             <div className="space-y-4">
-                {items.map((item, i) => (
-                    <Card key={i} variant="bordered" className="p-4 space-y-2">
-                        <h3 className="font-semibold text-foreground">
-                            {item.name}
-                        </h3>
-                        <p className="text-sm text-muted-foreground leading-relaxed">
-                            {item.description}
-                        </p>
-                        <div className="flex items-center justify-between pt-1">
-                            <Badge variant="primary" className="font-semibold">
-                                {item.qty}{" "}
-                                {item.qty > 1 ? "unidades" : "unidade"}
-                            </Badge>
-                            <span className="text-sm font-semibold text-foreground">
-                                {fmt(item.price)} /un.
-                            </span>
+                {items.map(item => (
+                    <Card key={item.id} variant="bordered" className="p-4 space-x-3 flex items-center">
+                        <div className="size-12">
+                        <img src={item.photo} alt={item.name} className="max-w-full max-h-full object-cover rounded-md m-auto" />
+                        </div>
+                        <div>
+                            <h3 className="font-semibold text-foreground">
+                                {item.name}
+                            </h3>
+                            <p className="text-sm text-muted-foreground leading-relaxed">
+                                {item.description}
+                            </p>
+                            <div className="flex items-center justify-between pt-1 w-full">
+                                <Badge
+                                    variant="primary"
+                                    className="font-semibold"
+                                >
+                                    {item.qty}{" "}
+                                    {item.qty > 1 ? "unidades" : "unidade"}
+                                </Badge>
+                                <span className="text-sm font-semibold text-foreground ms-auto">
+                                    {fmt(item.price)} /un.
+                                </span>
+                            </div>
                         </div>
                     </Card>
                 ))}
