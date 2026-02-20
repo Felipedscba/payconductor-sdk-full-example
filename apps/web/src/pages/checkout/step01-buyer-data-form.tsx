@@ -19,7 +19,7 @@ export function BuyerDataForm({ onContinue, initialData }: BuyerDataFormProps) {
         initialData || {
             email: "ana.silva@exemplo.com",
             name: "Ana Cristina da Silva",
-            documentType: "CPF",
+            documentType: "Cpf",
             documentNumber: "123.456.789-00",
             phoneNumber: "(11) 9 8765-4321",
         }
@@ -77,7 +77,7 @@ export function BuyerDataForm({ onContinue, initialData }: BuyerDataFormProps) {
                         type="text"
                         label="Número do documento"
                         placeholder={
-                            formData.documentType === "CPF"
+                            formData.documentType === "Cpf"
                                 ? "000.000.000-00"
                                 : "00.000.000/0000-00"
                         }

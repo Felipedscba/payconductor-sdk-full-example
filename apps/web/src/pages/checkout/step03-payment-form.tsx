@@ -62,9 +62,16 @@ function PaymentFormContent({
             const response = await createOrder(orderRequest);
             console.log("Pedido criado:", response);
             alert(`Pedido criado com sucesso! ID: ${response.externalId}`);
-        } catch (error) {
+        } catch (error: any) {
+            let message = "Unknown error";
+            if (error?.response) {
+                message = error.response.data?.message || message;
+            }
+            if (!message) {
+                message = error.message || message;
+            }
             console.error("Erro ao criar pedido:", error);
-            alert("Erro ao criar pedido. Tente novamente.");
+            alert(`Erro ao criar pedido: ${message}`);
         } finally {
             setLoading(false);
         }

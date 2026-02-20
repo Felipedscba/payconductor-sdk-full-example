@@ -3,5 +3,15 @@ import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
+  server: {
+    port: 5183,
+    proxy: {
+      "/api": {
+        target: "http://localhost:5184",
+        changeOrigin: true,
+        secure: false,
+      },
+    }
+  },
   plugins: [react(), tailwindcss()],
 });
