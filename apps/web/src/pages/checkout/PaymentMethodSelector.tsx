@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Lock, Info } from "lucide-react";
 import { Button } from "@repo/ui";
 import { createOrder, type TApiCreateOrderRequest } from "../../modules/api";
 import type { BuyerData } from "./BuyerDataForm";
 import type { AddressData } from "./AddressForm";
 import PayConductor, {
+    useElement,
     usePayConductor,
 } from "@payconductor-sdk-web/library-react";
 
@@ -21,6 +22,7 @@ export function PaymentMethodSelector({
 }: PaymentMethodSelectorProps) {
     const [loading, setLoading] = useState(false);
     const { isReady, error } = usePayConductor();
+    const { update } = useElement();
 
     const handleFinalize = async () => {
         setLoading(true);
@@ -67,6 +69,7 @@ export function PaymentMethodSelector({
     return (
         <PayConductor
             publicKey="pk_test_123"
+            intentToken="asdas"
             theme={{ primaryColor: "#0066ff" }}
             locale="pt-BR"
             onReady={() => handleEvent("Ready", null)}
