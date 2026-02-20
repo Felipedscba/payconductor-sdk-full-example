@@ -15,7 +15,30 @@ interface PaymentFormProps {
     cartItems: Array<{ id: string; qty: number }>;
 }
 
-export function PaymentForm({
+export function PaymentForm(props: PaymentFormProps) {
+    function handleEvent(name: string, content?: any) {
+        alert(`Evento: ${name}\nConteúdo: ${JSON.stringify(content)}`);
+    }
+    return (
+        <PayConductor
+            publicKey={env.PAYCONDUCTOR_PUBLIC_KEY}
+            theme={{ primaryColor: "#0066ff" }}
+            locale="pt-BR"
+            onReady={() => handleEvent("Ready", null)}
+            onPaymentComplete={(result) =>
+                handleEvent("paymentComplete", result)
+            }
+        >
+            <PaymentFormContent {...props} />
+        </PayConductor>
+    );
+}
+
+function PayConductorCheckoutElement() {
+    return <div></div>
+}
+
+function PaymentFormContent({
     buyerData,
     addressData,
     cartItems,
@@ -45,41 +68,24 @@ export function PaymentForm({
         }
     };
 
-    function handleEvent(name: string, content?: any) {
-        alert(`Evento: ${name}\nConteúdo: ${JSON.stringify(content)}`);
-    }
-
-    if (error) {
-        return (
-            <div className="min-h-100 flex items-center justify-center">
-                <div>Erro ao carregar PayConductor: {error}</div>
-            </div>
-        );
-    }
-
-    if (!isReady) {
-        return (
-            <div className="min-h-100 flex items-center justify-center">
-                <div>Carregando...</div>
-            </div>
-        );
-    }
-
-
     return (
-        <PayConductor
-            publicKey={env.PAYCONDUCTOR_PUBLIC_KEY}
-            theme={{ primaryColor: "#0066ff" }}
-            locale="pt-BR"
-            onReady={() => handleEvent("Ready", null)}
-            onPaymentComplete={(result) =>
-                handleEvent("paymentComplete", result)
-            }
-        >
+        <>
+            {!isReady && (
+                <div className="min-h-100 flex items-center justify-center">
+                    <div>Carregando método de pagamento...</div>
+                </div>
+            )}
+            {error && (
+                <div className="min-h-100 flex items-center justify-center text-red-500">
+                    Erro ao carregar método de pagamento: {error}
+                </div>
+            )}
             <div className="space-y-6">
                 <h2 className="text-xl font-semibold text-foreground">
                     Método de pagamento
                 </h2>
+
+                <PayConductorCheckoutElement />
 
                 <Button
                     variant="primary"
@@ -97,6 +103,6 @@ export function PaymentForm({
                     <Info className="h-3.5 w-3.5" />
                 </div>
             </div>
-        </PayConductor>
+        </>
     );
 }
