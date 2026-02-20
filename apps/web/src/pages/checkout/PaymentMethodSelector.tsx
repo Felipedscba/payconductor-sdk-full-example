@@ -1,13 +1,6 @@
 import { useState } from "react";
-import {
-    Lock,
-    Info,
-    CreditCard,
-    QrCode,
-    Barcode,
-    Smartphone,
-} from "lucide-react";
-import { Input, Select, Button, Badge } from "@repo/ui";
+import { Lock, Info } from "lucide-react";
+import { Button } from "@repo/ui";
 import { createOrder, type TApiCreateOrderRequest } from "../../modules/api";
 import type { BuyerData } from "./BuyerDataForm";
 import type { AddressData } from "./AddressForm";
@@ -77,7 +70,9 @@ export function PaymentMethodSelector({
             theme={{ primaryColor: "#0066ff" }}
             locale="pt-BR"
             onReady={() => handleEvent("Ready", null)}
-            onPaymentComplete={(result) => handleEvent('paymentComplete', result)}
+            onPaymentComplete={(result) =>
+                handleEvent("paymentComplete", result)
+            }
         >
             <div className="space-y-6">
                 <h2 className="text-xl font-semibold text-foreground">
