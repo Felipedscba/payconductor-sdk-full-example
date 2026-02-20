@@ -15,9 +15,8 @@ export function StepsIndicator({ currentStep }: StepsIndicatorProps) {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-6">
             <div className="flex items-center gap-3 text-sm">
                 {steps.map((step, index) => (
-                    <>
+                    <div key={step.id}>
                         <span
-                            key={step.id}
                             className={`font-medium ${
                                 index < currentIndex
                                     ? "text-checkout-success"
@@ -33,7 +32,7 @@ export function StepsIndicator({ currentStep }: StepsIndicatorProps) {
                                 →
                             </span>
                         )}
-                    </>
+                    </div>
                 ))}
             </div>
         </div>

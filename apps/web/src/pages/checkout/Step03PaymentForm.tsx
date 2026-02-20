@@ -4,7 +4,10 @@ import { Button } from "@repo/ui";
 import { createOrder, type TApiCreateOrderRequest } from "../../modules/api";
 import type { BuyerData } from "./Step01BuyerDataForm";
 import type { AddressData } from "./Step02AddressForm";
-import PayConductor, { usePayConductor } from "@payconductor-sdk-web/library-react";
+import PayConductor, {
+    usePayConductor,
+} from "@payconductor-sdk-web/library-react";
+import { env } from "../../modules/env";
 
 interface PaymentFormProps {
     buyerData: BuyerData;
@@ -62,10 +65,10 @@ export function PaymentForm({
         );
     }
 
+
     return (
         <PayConductor
-            publicKey="pk_test_123"
-            intentToken="asdas"
+            publicKey={env.PAYCONDUCTOR_PUBLIC_KEY}
             theme={{ primaryColor: "#0066ff" }}
             locale="pt-BR"
             onReady={() => handleEvent("Ready", null)}
