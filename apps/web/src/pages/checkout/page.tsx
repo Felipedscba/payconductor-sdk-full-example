@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { Button, Card } from "@repo/ui";
-import { BuyerDataForm, type BuyerData } from "./BuyerDataForm";
-import { AddressForm, type AddressData } from "./AddressForm";
-import { PaymentMethodSelector } from "./PaymentMethodSelector";
+
+import { BuyerDataForm, type BuyerData } from "./Step01BuyerDataForm";
+import { AddressForm, type AddressData } from "./Step02AddressForm";
+import { PaymentForm } from "./Step03PaymentForm";
+
 import { OrderSummary } from "./OrderSummary";
 import { CheckoutHeader } from "./CheckoutHeader";
 import { StepsIndicator } from "./StepsIndicator";
@@ -31,7 +33,7 @@ export function CheckoutPage() {
         setAddressData(data);
         setStep("payment");
     };
-    
+
     return (
         <div className="min-h-screen bg-background">
             <CheckoutHeader />
@@ -74,7 +76,7 @@ export function CheckoutPage() {
                                     ← Voltar para endereço
                                 </Button>
                                 {buyerData && addressData && cartData && (
-                                    <PaymentMethodSelector
+                                    <PaymentForm
                                         buyerData={buyerData}
                                         addressData={addressData}
                                         cartItems={cartData.products.map(

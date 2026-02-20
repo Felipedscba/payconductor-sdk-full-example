@@ -1,28 +1,24 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Lock, Info } from "lucide-react";
 import { Button } from "@repo/ui";
 import { createOrder, type TApiCreateOrderRequest } from "../../modules/api";
-import type { BuyerData } from "./BuyerDataForm";
-import type { AddressData } from "./AddressForm";
-import PayConductor, {
-    useElement,
-    usePayConductor,
-} from "@payconductor-sdk-web/library-react";
+import type { BuyerData } from "./Step01BuyerDataForm";
+import type { AddressData } from "./Step02AddressForm";
+import PayConductor, { usePayConductor } from "@payconductor-sdk-web/library-react";
 
-interface PaymentMethodSelectorProps {
+interface PaymentFormProps {
     buyerData: BuyerData;
     addressData: AddressData;
     cartItems: Array<{ id: string; qty: number }>;
 }
 
-export function PaymentMethodSelector({
+export function PaymentForm({
     buyerData,
     addressData,
     cartItems,
-}: PaymentMethodSelectorProps) {
+}: PaymentFormProps) {
     const [loading, setLoading] = useState(false);
     const { isReady, error } = usePayConductor();
-    const { update } = useElement();
 
     const handleFinalize = async () => {
         setLoading(true);
