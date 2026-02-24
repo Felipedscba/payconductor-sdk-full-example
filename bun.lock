@@ -34,7 +34,7 @@
       "name": "web",
       "version": "0.0.0",
       "dependencies": {
-        "@payconductor-sdk-web/library-react": "^1.0.8",
+        "@payconductor/react": "^1.0.2",
         "@repo/ui": "*",
         "axios": "^1.13.5",
         "lucide-react": "^0.575.0",
@@ -200,7 +200,7 @@
 
     "@nodelib/fs.walk": ["@nodelib/fs.walk@1.2.8", "", { "dependencies": { "@nodelib/fs.scandir": "2.1.5", "fastq": "^1.6.0" } }, "sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg=="],
 
-    "@payconductor-sdk-web/library-react": ["@payconductor-sdk-web/library-react@1.0.8", "", { "peerDependencies": { "react": ">=16.8.0", "react-dom": ">=16.8.0" } }, "sha512-LaZbBteVXlfu4rLvxwlM8Gp+nJlzw/idCGxZECHUsxPqfPFp1RYHuzL/FExyfAnFcCJqiGL8EVqQDfphc+Xa7g=="],
+    "@payconductor/react": ["@payconductor/react@1.0.2", "", { "peerDependencies": { "react": ">=16.8.0", "react-dom": ">=16.8.0" } }, "sha512-HIwvtbs13avJZB6xvGEaWc3izb1Oyr6tRJ5U8HBnG1YHoVaw7qv+rUD1wH8SzPY+ygRXzWX6rShh9DYoi2IQGQ=="],
 
     "@repo/eslint-config": ["@repo/eslint-config@workspace:packages/eslint-config"],
 

@@ -10,7 +10,7 @@
     "lint": "eslint \"src/**/*.ts\""
   },
   "dependencies": {
-    "@payconductor-sdk-web/library-react": "^1.0.8",
+    "@payconductor/react": "^1.0.2",
     "@repo/ui": "*",
     "axios": "^1.13.5",
     "lucide-react": "^0.575.0",

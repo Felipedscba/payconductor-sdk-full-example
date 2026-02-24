@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Lock, Info } from "lucide-react";
 import { Button } from "@repo/ui";
 import { createOrder, type TApiCreateOrderRequest } from "../../modules/api";
 import type { BuyerData } from "./step01-buyer-data-form";
@@ -9,7 +8,7 @@ import {
     PayConductorCheckoutElement,
     usePayConductor,
     usePayconductorElement,
-} from "@payconductor-sdk-web/library-react";
+} from "@payconductor/react";
 import { env } from "../../modules/env";
 
 interface PaymentFormProps {
@@ -22,7 +21,7 @@ export function PaymentForm(props: PaymentFormProps) {
     function handleEvent(name: string, content?: any) {
         alert(`Evento: ${name}\nConteúdo: ${JSON.stringify(content)}`);
     }
-    
+
     return (
         <PayConductor
             publicKey={env.PAYCONDUCTOR_PUBLIC_KEY}
@@ -83,20 +82,21 @@ function PaymentFormContent({
 
     return (
         <>
-            {!isReady && (
-                <div className="min-h-100 flex items-center justify-center">
-                    <div>Carregando método de pagamento...</div>
-                </div>
-            )}
-            {error && (
-                <div className="min-h-100 flex items-center justify-center text-red-500">
-                    Erro ao carregar método de pagamento: {error}
-                </div>
-            )}
             <div className="space-y-6">
                 <h2 className="text-xl font-semibold text-foreground">
                     Método de pagamento
                 </h2>
+
+                {!isReady && (
+                    <div className="min-h-10 flex items-center justify-center">
+                        <div>Carregando método de pagamento...</div>
+                    </div>
+                )}
+                {error && (
+                    <div className="min-h-100 flex items-center justify-center text-red-500">
+                        Erro ao carregar método de pagamento: {error}
+                    </div>
+                )}
 
                 <PayConductorCheckoutElement />
 
@@ -109,12 +109,6 @@ function PaymentFormContent({
                 >
                     {loading ? "Processando..." : "Finalizar compra"}
                 </Button>
-
-                <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground">
-                    <Lock className="h-3.5 w-3.5" />
-                    <span>Pagamento protegido</span>
-                    <Info className="h-3.5 w-3.5" />
-                </div>
             </div>
         </>
     );
