@@ -20,7 +20,7 @@ export function BuyerDataForm({ onContinue, initialData }: BuyerDataFormProps) {
             email: "ana.silva@exemplo.com",
             name: "Ana Cristina da Silva",
             documentType: "Cpf",
-            documentNumber: "123.456.789-00",
+            documentNumber: "289.754.070-20",
             phoneNumber: "(11) 9 8765-4321",
         }
     );

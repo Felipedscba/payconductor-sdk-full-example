@@ -78,7 +78,7 @@ app.post("/api/order/create", async (req, res) => {
             payment: {
                 paymentMethod: "Draft",
                 expirationInSeconds: 60 * 5, // 5 minutes
-                availablePaymentMethods: ["Pix", "CreditCard"],
+                availablePaymentMethods: ["BankSlip", "Pix", "CreditCard", "GooglePay"],
             },
             items,
         };
@@ -93,7 +93,7 @@ app.post("/api/order/create", async (req, res) => {
         if (!message) {
             message = error.message || message;
         }
-        console.error("Error creating order:", error?.response?.data || error);
+        console.error("Error creating order:", error?.response?.data || error, payconductorApi.defaults.baseURL);
         res.status(500).json({ message });
     }
 });
